@@ -11,7 +11,7 @@ class PacienteController extends Controller
 
     public function __construct()
     {
-        $this->authorizeResource(Paciente::class, 'paciente');
+        //$this->authorizeResource(Paciente::class, 'paciente');
     }
 
     /**
