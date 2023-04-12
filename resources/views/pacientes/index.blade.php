@@ -28,7 +28,7 @@
                         </thead>
                         <tbody class="text-gray-600 text-sm font-light">
 
-                            @foreach ($paciente as $paciente)
+                            @foreach ($pacientes as $paciente)
                             <tr class="border-b  border-gray-200">
                                 <td class="py-3 px-6 text-left whitespace-nowrap">
                                     <div class="flex items-center">
@@ -52,7 +52,7 @@
                                 </td> --}}
                                 <td class="py-3 px-6 text-left whitespace-nowrap">
                                     <div class="flex items-center">
-                                        <span class="font-medium">{{$paciente->citas()->where('fecha_hora', \Carbon\Carbon::now())->count()}}</span>
+                                        {{-- <span class="font-medium">{{$paciente->citas()->where('fecha_hora', \Carbon\Carbon::now())->count()}}</span> --}}
                                     </div>
                                 </td>
                                 <td class="py-3 px-6 text-center">

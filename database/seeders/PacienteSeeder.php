@@ -4,8 +4,9 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
 
-class PacientesSeeder extends Seeder
+class PacienteSeeder extends Seeder
 {
     /**
      * Run the database seeds.
