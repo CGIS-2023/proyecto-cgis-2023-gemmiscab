@@ -31,12 +31,14 @@ Route::middleware('auth')->group(function () {
 
 require __DIR__.'/auth.php';
 
-Route::middleware(['auth'])->group(function () {
-    Route::resources([
-        'pacientes' => PacienteController::class,
-    ]);
-    Route::get('/pacientes-hoy', [PacienteController::class, 'pacientesHoy']);
-});
+Route::resource('pacientes', PacienteController::class);
+
+// Route::middleware(['auth'])->group(function () {
+//     Route::resources([
+//         'pacientes' => PacienteController::class,
+//     ]);
+//     Route::get('/pacientes-hoy', [PacienteController::class, 'pacientesHoy']);
+// });
 
 
 
