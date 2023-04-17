@@ -8,4 +8,10 @@ use Illuminate\Database\Eloquent\Model;
 class Medicamento extends Model
 {
     use HasFactory;
+
+    protected $fillable = ['nombre', 'dosis'];
+
+    public function tipo_medicamento(){
+        return $this->belongsTo(Tipo_Medicamento::class);
+    }
 }

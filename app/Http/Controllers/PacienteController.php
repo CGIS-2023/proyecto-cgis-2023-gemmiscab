@@ -22,7 +22,7 @@ class PacienteController extends Controller
     public function index()
     {
         $pacientes = Paciente::paginate(25);
-        return view('/pacientes/index', ['pacientes' => $pacientes]);
+        return view('pacientes.index', ['pacientes' => $pacientes]);
     }
 
     /**
@@ -32,7 +32,7 @@ class PacienteController extends Controller
      */
     public function create()
     {
-        return view('pacientes/create');
+        return view('pacientes.create');
     }
 
     /**
@@ -49,13 +49,13 @@ class PacienteController extends Controller
             'password' => 'required|string|confirmed|min:8',
             'nuhsa' => 'required|string',
         ]);
-        $user = User::create([
-            'name' => $request->name,
-            'email' => $request->email,
-            'password' => Hash::make($request->password),
-        ]);
+        // $user = User::create([
+        //     'name' => $request->name,
+        //     'email' => $request->email,
+        //     'password' => Hash::make($request->password),
+        // ]);
         $paciente = new Paciente($request->all());
-        $paciente->user_id = $user->id;
+      //  $paciente->user_id = $user->id;
         $paciente->save();
         session()->flash('success', 'Paciente creado correctamente');
         return redirect()->route('pacientes.index');
@@ -69,7 +69,8 @@ class PacienteController extends Controller
      */
     public function show($id)
     {
-        return view('pacientes/show', ['paciente' => $paciente]);
+        $paciente= Paciente::find($id);
+        return view('pacientes.show', ['paciente' => $paciente]);
     }
 
     /**
@@ -78,9 +79,9 @@ class PacienteController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Paciente $paciente)
     {
-        return view('pacientes/edit', ['paciente' => $paciente]);
+        return view('pacientes.edit', ['paciente' => $paciente]);
     }
 
     /**
@@ -97,9 +98,9 @@ class PacienteController extends Controller
             'email' => 'required|string|email|max:255',
             'nuhsa' => 'required|string',
         ]);
-        $user = $paciente->user;
-        $user->fill($request->all());
-        $user->save();
+        // $user = $paciente->user;
+        // $user->fill($request->all());
+        // $user->save();
         $paciente->fill($request->all());
         $paciente->save();
         session()->flash('success', 'Paciente modificado correctamente.');
@@ -114,12 +115,14 @@ class PacienteController extends Controller
      */
     public function destroy($id)
     {
-        if($paciente->delete()) {
-            session()->flash('success', 'Paciente borrado correctamente.');
-        }
-        else{
-            session()->flash('warning', 'El paciente no pudo borrarse. Es probable que se deba a que tenga asociada información como recetas que dependen de él.');
-        }
-        return redirect()->route('paciente.index');
+        // if($paciente->delete()) {
+        //     session()->flash('success', 'Paciente borrado correctamente.');
+        // }
+        // else{
+        //     session()->flash('warning', 'El paciente no pudo borrarse. Es probable que se deba a que tenga asociada información como recetas que dependen de él.');
+        // }
+        $paciente= Paciente::find($id);
+        $paciente->delete();
+        return redirect()->route('pacientes.index');
     }
 }
