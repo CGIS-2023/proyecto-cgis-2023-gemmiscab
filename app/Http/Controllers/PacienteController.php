@@ -55,7 +55,7 @@ class PacienteController extends Controller
         //     'password' => Hash::make($request->password),
         // ]);
         $paciente = new Paciente($request->all());
-      //  $paciente->user_id = $user->id;
+        //  $paciente->user_id = $user->id;
         $paciente->save();
         session()->flash('success', 'Paciente creado correctamente');
         return redirect()->route('pacientes.index');
@@ -121,7 +121,7 @@ class PacienteController extends Controller
         // else{
         //     session()->flash('warning', 'El paciente no pudo borrarse. Es probable que se deba a que tenga asociada información como recetas que dependen de él.');
         // }
-        $paciente= Paciente::find($id);
+        $paciente = Paciente::find($id);
         $paciente->delete();
         return redirect()->route('pacientes.index');
     }

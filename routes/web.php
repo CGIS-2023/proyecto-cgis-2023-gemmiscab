@@ -32,6 +32,10 @@ Route::middleware('auth')->group(function () {
 require __DIR__.'/auth.php';
 
 Route::resource('pacientes', PacienteController::class);
+Route::resource('farmaceuticos', FarmaceuticoController::class);
+Route::resource('recetas', RecetaController::class);
+Route::resource('medicamentos', MedicamentoController::class);
+Route::resource('tipoMedicamentos', TipoMedicamentoController::class);
 
 // Route::middleware(['auth'])->group(function () {
 //     Route::resources([

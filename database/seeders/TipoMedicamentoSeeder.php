@@ -15,7 +15,7 @@ class TipoMedicamentoSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('tipo_medicamento')->insert([
+        DB::table('tipo_medicamentos')->insert([
             [
                 'nombre' => "Analgésico",
             ],
@@ -23,7 +23,7 @@ class TipoMedicamentoSeeder extends Seeder
                 'nombre' => "Antibiótico",
             ],
             [
-                'nombre' => "Antidepresivo",
+                'nombre' => "Psicoestimulante",
             ],
             [
                 'nombre' => "Anticonceptivo",
