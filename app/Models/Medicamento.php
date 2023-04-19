@@ -14,4 +14,8 @@ class Medicamento extends Model
     public function tipo_medicamento(){
         return $this->belongsTo(Tipo_Medicamento::class);
     }
+
+    public function recetas(){
+        return $this->belongsToMany(Receta::class)->withPivot('tomas_dia', 'comentarios', 'inicio', 'fin');
+    }
 }

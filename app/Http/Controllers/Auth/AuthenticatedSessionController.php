@@ -29,6 +29,10 @@ class AuthenticatedSessionController extends Controller
 
         $request->session()->regenerate();
 
+        if(in_array(Auth::user()->tipo_usuario_id, [1,2])){
+            return redirect()->route('recetas.index');
+        }
+
         return redirect()->intended(RouteServiceProvider::HOME);
     }
 

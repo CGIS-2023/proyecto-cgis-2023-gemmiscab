@@ -9,12 +9,18 @@ class Receta extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['fecha_prescripcion', 'fecha_dispensacion'];
-    //tb paciente al que ha sido prescrita
-    //farmaceutico que la ha dispensado
-    //medicamentos prescritos
-    //medicamentos dispensados
+    protected $fillable = ['fecha'];
 
-    //public function
+    public function farmaceutico(){
+        return $this->belongsTo(Farmaceutico::class);
+    }
+
+    public function paciente(){
+        return $this->belongsTo(Paciente::class);
+    }
+
+    public function medicamentos(){
+        return $this->belongsToMany(Medicamento::class)->using(MedicamentoRecetaPivot::class)->withPivot('tomas_dia', 'comentarios', 'inicio', 'fin');
+    }
 
 }

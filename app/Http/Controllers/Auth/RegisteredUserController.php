@@ -34,13 +34,41 @@ class RegisteredUserController extends Controller
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:'.User::class],
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
+            'tipo_usuario_id' => 'required|numeric',
         ]);
+
+        $tipo_usuario_id = intval($request->tipo_usuario_id);
+        if($tipo_usuario_id == 1){
+            //Farmacéutico
+            $reglas_farmaceutico = ['numero_colegiado' => 'required|string'];
+            $rules = array_merge($reglas_farmaceutico, $rules);
+        }
+        elseif($tipo_usuario_id == 2){
+            //Paciente
+            $reglas_paciente = ['nuhsa' => ['required', 'string', 'max:12', 'min:12', new Nuhsa()]];
+            $rules = array_merge($reglas_paciente, $rules);
+        }
+        $request->validate($rules);
 
         $user = User::create([
             'name' => $request->name,
             'email' => $request->email,
             'password' => Hash::make($request->password),
         ]);
+
+        if($tipo_usuario_id == 1) {
+            //Farmacéutico
+            $farmaceutico = new Farmaceutico($request->all());
+            $farmaceutico->user_id = $user->id;
+            $farmaceutico->save();
+        }
+        elseif($tipo_usuario_id == 2){
+            //Paciente
+            $paciente = new Paciente($request->all());
+            $paciente->user_id = $user->id;
+            $paciente->save();
+        }
+        $user->fresh();
 
         event(new Registered($user));
 
