@@ -1,8 +1,11 @@
 <?php
 
-use App\Http\Controllers\PacienteController;
-use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\RecetaController;
+use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\PacienteController;
+use App\Http\Controllers\MedicamentoController;
+use App\Http\Controllers\FarmaceuticoController;
 
 /*
 |--------------------------------------------------------------------------

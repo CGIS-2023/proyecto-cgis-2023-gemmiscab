@@ -49,7 +49,7 @@
                                             </a>
                                         </div>
                                         <div class="w-4 mr-2 transform hover:text-purple-500 hover:scale-110">
-                                            <form id="delete-form-{{$medicamento->id}}" method="POST" action="{{ route('especialidads.destroy', $medicamento->id) }}">
+                                            <form id="delete-form-{{$medicamento->id}}" method="POST" action="{{ route('medicamentos.destroy', $medicamento->id) }}">
                                                 @csrf
                                                 @method('delete')
                                                 <a class="cursor-pointer" onclick="getElementById('delete-form-{{$medicamento->id}}').submit();">
