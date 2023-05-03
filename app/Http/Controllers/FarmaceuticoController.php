@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Farmaceutico;
 use Illuminate\Http\Request;
 
 class FarmaceuticoController extends Controller
