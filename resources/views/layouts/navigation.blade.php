@@ -4,9 +4,9 @@
         <div class="flex justify-between h-16">
             <div class="flex">
                 <!-- Logo -->
-                <div class="flex-shrink-0 flex items-center">
+                <div class="flex items-center">
                     <a href="{{ route('dashboard') }}">
-                        <x-application-logo class="block h-10 w-auto fill-current text-gray-600" />
+                        <x-application-logo class="h-9" />
                     </a>
                 </div>
 
@@ -18,15 +18,15 @@
                         </x-nav-link>
                     @endif
                     @if(Auth::user()->tipo_usuario_id == 3)
-                            {{--<x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
+                            {{-- <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
                                 {{ __('Dashboard') }}
-                            </x-nav-link>--}}
+                            </x-nav-link> --}}
                             <x-nav-link :href="route('medicamentos.index')" :active="request()->routeIs('medicamentos.index') or request()->routeIs('medicamentos.create') or request()->routeIs('medicamentos.edit') or request()->routeIs('medicamentos.show')">
                                 {{ __('Medicamentos') }}
                             </x-nav-link>
-                            {{-- <x-nav-link :href="route('especialidads.index')" :active="request()->routeIs('especialidads.index') or request()->routeIs('especialidads.create') or request()->routeIs('especialidads.edit')">
-                                {{ __('Especialidades') }} --}}
-                            {{-- </x-nav-link> --}}
+                            <x-nav-link :href="route('pacientes.index')" :active="request()->routeIs('pacientes.index') or request()->routeIs('pacientes.create') or request()->routeIs('pacientes.edit') or request()->routeIs('pacientes.show')">
+                                {{ __('Pacientes') }}
+                            </x-nav-link>
                             <x-nav-link :href="route('farmaceuticos.index')" :active="request()->routeIs('farmaceuticos.index') or request()->routeIs('farmaceuticos.create') or request()->routeIs('farmaceuticos.edit') or request()->routeIs('farmaceuticos.show')">
                                 {{ __('Farmacéuticos') }}
                             </x-nav-link>

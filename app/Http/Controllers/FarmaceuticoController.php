@@ -74,7 +74,7 @@ class FarmaceuticoController extends Controller
      */
     public function edit(Farmaceutico $farmaceutico)
     {
-        return view('farmaceuticos.edit', ['farmaceuticos' => $farmaceutico]);
+        return view('farmaceuticos.edit', ['farmaceutico' => $farmaceutico]);
     }
 
     /**

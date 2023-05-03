@@ -52,7 +52,7 @@
                                 </td> --}}
                                 <td class="py-3 px-6 text-left whitespace-nowrap">
                                     <div class="flex items-center">
-                                        {{-- <span class="font-medium">{{$paciente->citas()->where('fecha_hora', \Carbon\Carbon::now())->count()}}</span> --}}
+                                        <span class="font-medium">{{$paciente->recetas()->where('fecha', \Carbon\Carbon::now())->count()}}</span>
                                     </div>
                                 </td>
                                 <td class="py-3 px-6 text-center">
