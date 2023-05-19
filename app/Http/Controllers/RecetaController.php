@@ -125,7 +125,7 @@ class RecetaController extends Controller
             'comentarios' => 'nullable|string',
             'tomas_dia' => 'required|numeric|min:0',
         ]);
-        $cita->medicamentos()->attach($request->medicamento_id, [
+        $receta->medicamentos()->attach($request->medicamento_id, [
             'inicio' => $request->inicio,
             'fin' => $request->fin,
             'comentarios' => $request->comentarios,

@@ -33,7 +33,7 @@
                             <x-label for="fecha" :value="__('Fecha')" />
 
                             <x-input id="fecha" class="block mt-1 w-full"
-                                     type="datetime-local"
+                                     type="date"
                                      name="fecha"
                                      :value="$receta->fecha->format('Y-m-d')"
                                      required />
@@ -75,13 +75,13 @@
                                 <x-input class="block mt-1 w-full"
                                          type="text"
                                          disabled
-                                         value="{{$farmaceutico->user->name}} ({{$farmaceutico->nombre}})"
+                                         value="{{$farmaceutico->user->name}} ({{$farmaceutico->numero_colegiado}})"
                                 />
                             @else
                                 <x-select id="farmaceutico_id" name="farmaceutico_id" required>
                                     <option value="">{{__('Elige un farmacéutico')}}</option>
                                     @foreach ($farmaceuticos as $farmaceutico)
-                                        <option value="{{$farmaceutico->id}}" @if ($receta->farmaceutico_id == $farmaceutico->id) selected @endif>{{$farmaceutico->user->name}} ({{$farmaceutico->nombre}})</option>
+                                        <option value="{{$farmaceutico->id}}" @if ($receta->farmaceutico_id == $farmaceutico->id) selected @endif>{{$farmaceutico->user->name}} ({{$farmaceutico->numero_colegiado}})</option>
                                     @endforeach
                                 </x-select>
                             @endisset
