@@ -5,9 +5,15 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Tipo_medicamento extends Model
+class TipoMedicamento extends Model
 {
     use HasFactory;
 
     protected $fillable = ['nombre'];
+
+    public function medicamentos(){
+        return $this->hasMany(Medicamento::class);
+    }
+
 }
+

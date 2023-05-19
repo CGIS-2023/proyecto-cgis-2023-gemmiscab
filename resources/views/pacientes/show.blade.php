@@ -34,9 +34,9 @@
                             </div>
 
                             <div>
-                                <x-label for="nuhsa" :value="__('NUHSA')" />
+                                <x-label for="nuhsa" :value="__('Nuhsa')" />
 
-                                <x-input id="nuhsa" readonly disabled class="block mt-1 w-full" type="text" name="NUHSA" :value="$paciente->nuhsa" required autofocus />
+                                <x-input id="nuhsa" readonly disabled class="block mt-1 w-full" type="text" name="nuhsa" :value="$paciente->nuhsa" required autofocus />
                             </div>
 
                             <!-- Email Address -->

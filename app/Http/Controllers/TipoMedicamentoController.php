@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Tipo_medicamento
+use App\Models\TipoMedicamento
 use Illuminate\Http\Request;
 
 class TipoMedicamentoController extends Controller
@@ -15,7 +15,7 @@ class TipoMedicamentoController extends Controller
 
     public function index()
     {
-        $tipo_medicamentos = TipoMedicamentos::paginate(25);
+        $tipo_medicamentos = TipoMedicamento::paginate(25);
         return view('tipo_medicamentos.index', ['tipo_medicamentos' => $tipo_medicamentos]);
     }
 
@@ -26,7 +26,7 @@ class TipoMedicamentoController extends Controller
      */
     public function create()
     {
-        return view('tipo_medicamentos.create');
+        return view('tipo_medicamentos.create', ['tipo_medicamentos' => $tipo_medicamentos]);
     }
 
     /**
@@ -42,7 +42,7 @@ class TipoMedicamentoController extends Controller
         ], [
             'nombre.required' => 'El tipo de medicamento es obligatorio',
         ]);
-        $tipo_medicamento = new Tipo_medicamento($request->all());
+        $tipo_medicamento = new TipoMedicamento($request->all());
         $tipo_medicamento->save();
         session()->flash('success', 'Tipo de medicamento creado correctamente. Si nos da tiempo haremos este mensaje internacionalizable y parametrizable');
         return redirect()->route('tipo_medicamentos.index');
@@ -56,7 +56,7 @@ class TipoMedicamentoController extends Controller
      */
     public function show($id)
     {
-        $tipo_medicamento = Tipo_medicamento::find($id);
+        $tipo_medicamento = TipoMedicamento::find($id);
         return view('tipo_medicamentos.show', ['tipo_medicamento' => $tipo_medicamento]);
     }
 
@@ -66,7 +66,7 @@ class TipoMedicamentoController extends Controller
      * @param  \App\Equipo  $equipo
      * @return \Illuminate\Http\Response
      */
-    public function edit(Tipo_medicamento $tipo_medicamento)
+    public function edit(TipoMedicamento $tipo_medicamento)
     {
         return view('tipo_medicamento.edit', ['tipo_medicamento' => $tipo_medicamento]);
     }
@@ -78,7 +78,7 @@ class TipoMedicamentoController extends Controller
      * @param  \App\Equipo  $equipo
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Tipo_medicamento $tipo_medicamento)
+    public function update(Request $request, TipoMedicamento $tipo_medicamento)
     {
         $this->validate($request, [
             'nombre' => 'required|string|max:255',
@@ -95,7 +95,7 @@ class TipoMedicamentoController extends Controller
      * @param  \App\Equipo  $equipo
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Tipo_medicamento $tipo_medicamento)
+    public function destroy(TipoMedicamento $tipo_medicamento)
     {
         if($tipo_medicamento->delete()) {
             session()->flash('success', 'Tipo de medicamento borrado correctamente. Si nos da tiempo haremos este mensaje internacionalizable y parametrizable');

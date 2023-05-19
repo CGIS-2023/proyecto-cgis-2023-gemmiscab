@@ -35,10 +35,10 @@
                                 <x-input id="name" class="block mt-1 w-full" type="text" name="name" :value="$paciente->user->name" required autofocus />
                             </div>
 
-                            <div>
-                                <x-label for="nuhsa" :value="__('NUHSA')" />
+                            <div class="mt-4">
+                                <x-label for="nuhsa" :value="__('Nuhsa')" />
 
-                                <x-input id="nuhsa" class="block mt-1 w-full" type="text" name="NUHSA" :value="$paciente->nuhsa" required autofocus />
+                                <x-input id="nuhsa" class="block mt-1 w-full" type="text" name="nuhsa" :value="$paciente->nuhsa" required />
                             </div>
 
                             <!-- Email Address -->

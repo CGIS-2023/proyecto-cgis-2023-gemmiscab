@@ -9,10 +9,10 @@ class Medicamento extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['nombre', 'dosis'];
+    protected $fillable = ['nombre', 'dosis', 'tipo_medicamento_id'];
 
     public function tipo_medicamento(){
-        return $this->belongsTo(Tipo_Medicamento::class);
+        return $this->belongsTo(TipoMedicamento::class);
     }
 
     public function recetas(){

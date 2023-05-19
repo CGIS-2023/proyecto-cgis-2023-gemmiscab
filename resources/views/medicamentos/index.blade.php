@@ -21,6 +21,7 @@
                             <tr class="bg-gray-200 text-gray-900 uppercase text-sm leading-normal">
                                 <th class="py-3 px-6 text-left">Nombre común</th>
                                 <th class="py-3 px-6 text-left">Dosis</th>
+                                <th class="py-3 px-6 text-left">Tipo medicamento</th>
                                 <th class="py-3 px-6 text-right">Acciones</th>
                             </tr>
                         </thead>
@@ -36,6 +37,11 @@
                                 <td class="py-3 px-6 text-left whitespace-nowrap">
                                     <div class="flex items-center">
                                         <span class="font-medium">{{$medicamento->dosis}} {{__('mg')}}</span>
+                                    </div>
+                                </td>
+                                <td class="py-3 px-6 text-left whitespace-nowrap">
+                                    <div class="flex items-center">
+                                        <span class="font-medium">{{$medicamento->tipo_medicamento ? $medicamento->tipo_medicamento->nombre : __('Sin tipo')}}</span>
                                     </div>
                                 </td>
                                 <td class="py-3 px-6 text-center">

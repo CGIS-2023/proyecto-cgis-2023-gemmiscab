@@ -5,13 +5,15 @@ namespace App\Http\Controllers;
 use App\Models\Paciente;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
+
 
 class PacienteController extends Controller
 {
 
     public function __construct()
     {
-        //$this->authorizeResource(Paciente::class, 'paciente');
+        // $this->authorizeResource(Paciente::class, 'paciente');
     }
 
     /**
@@ -49,13 +51,13 @@ class PacienteController extends Controller
             'password' => 'required|string|confirmed|min:8',
             'nuhsa' => 'required|string',
         ]);
-        // $user = User::create([
-        //     'name' => $request->name,
-        //     'email' => $request->email,
-        //     'password' => Hash::make($request->password),
-        // ]);
+        $user = User::create([
+            'name' => $request->name,
+            'email' => $request->email,
+            'password' => Hash::make($request->password),
+        ]);
         $paciente = new Paciente($request->all());
-        //  $paciente->user_id = $user->id;
+        $paciente->user_id = $user->id;
         $paciente->save();
         session()->flash('success', 'Paciente creado correctamente');
         return redirect()->route('pacientes.index');
@@ -91,16 +93,16 @@ class PacienteController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Paciente $paciente)
     {
         $this->validate($request, [
             'name' => 'required|string|max:255',
             'email' => 'required|string|email|max:255',
             'nuhsa' => 'required|string',
         ]);
-        // $user = $paciente->user;
-        // $user->fill($request->all());
-        // $user->save();
+        $user = $paciente->user;
+        $user->fill($request->all());
+        $user->save();
         $paciente->fill($request->all());
         $paciente->save();
         session()->flash('success', 'Paciente modificado correctamente.');

@@ -19,18 +19,22 @@ class MedicamentoSeeder extends Seeder
             [
                 'nombre' => "Paracetamol",
                 'dosis' => 750,
+                'tipo_medicamento_id' => 1
             ],
             [
                 'nombre' => "Ibuprofeno",
                 'dosis' => 600,
+                'tipo_medicamento_id' => 5
             ],
             [
                 'nombre' => "Rubifen",
                 'dosis' => 5,
+                'tipo_medicamento_id' =>3
             ],
             [
                 'nombre' => "Amoxicilina",
                 'dosis' => 500,
+                'tipo_medicamento_id' => 2
             ],
         ]);
     }

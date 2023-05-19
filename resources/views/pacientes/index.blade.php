@@ -23,7 +23,7 @@
                                 <th class="py-3 px-6 text-left">Nombre</th>
                                 {{-- <th class="py-3 px-6 text-left">Email</th> --}}
                                 <th class="py-3 px-6 text-left">NUHSA</th>
-                                <th class="py-3 px-6 text-right">Acciones</th>
+                                <th class="py-3 px-6 text-left">Acciones</th>
                             </tr>
                         </thead>
                         <tbody class="text-gray-600 text-sm font-light">

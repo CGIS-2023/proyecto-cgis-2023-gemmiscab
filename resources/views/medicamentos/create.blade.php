@@ -36,14 +36,15 @@
                             </div>
 
                             <!-- Dosis -->
-                            <div>
+                            <div class="mt-4">
                                 <x-label for="dosis" :value="__('Dosis (mg.)')" />
 
-                                <x-input id="dosis" class="block mt-1 w-full" type="number" name="dosis" step="5" :value="old('dosis')" required autofocus />
+                                <x-input id="dosis" class="block mt-1 w-full" type="number" name="dosis" :value="old('dosis')" required autofocus />
                             </div>
 
+                            <!-- Tipo medicamento -->
                             <div class="mt-4">
-                                <x-label for="tipo_medicamento" :value="__('Tipo_medicamento')" />
+                                <x-label for="tipo_medicamento" :value="__('Tipo medicamento')" />
 
 
                                 <x-select id="tipo_medicamento_id" name="tipo_medicamento" required>

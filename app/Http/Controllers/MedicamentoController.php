@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\TipoMedicamento;
 use App\Models\Medicamento;
 use Illuminate\Http\Request;
 
@@ -25,7 +26,8 @@ class MedicamentoController extends Controller
      */
     public function create()
     {
-        return view('medicamentos.create');
+        $tipo_medicamentos = TipoMedicamento::all();
+        return view('medicamentos.create', ['tipo_medicamentos' => $tipo_medicamentos]);
     }
 
     /**
@@ -38,7 +40,8 @@ class MedicamentoController extends Controller
     {
         $this->validate($request, [
             'nombre' => 'required|string|max:255',
-            'dosis' => 'required|numeric'
+            'dosis' => 'required|numeric',
+            'tipo_medicamento_id' => 'required|exists:tipo_medicamentos,id'
         ]);
         $medicamento = new Medicamento($request->all());
         $medicamento->save();
@@ -60,7 +63,9 @@ class MedicamentoController extends Controller
 
     public function edit(Medicamento $medicamento)
     {
-        return view('medicamentos.edit', ['medicamento' => $medicamento]);
+        //dd($medicamento);
+        $tipo_medicamentos = TipoMedicamento::all();
+        return view('medicamentos.edit', ['medicamento' => $medicamento, 'tipo_medicamentos' => $tipo_medicamentos]);
     }
 
 
@@ -68,7 +73,8 @@ class MedicamentoController extends Controller
     {
         $this->validate($request, [
             'nombre' => 'required|string|max:255',
-            'dosis' => 'required|numeric'
+            'dosis' => 'required|numeric',
+            'tipo_medicamento_id' => 'required|exists:tipo_medicamentos,id'
         ]);
         $medicamento->fill($request->all());
         $medicamento->save();

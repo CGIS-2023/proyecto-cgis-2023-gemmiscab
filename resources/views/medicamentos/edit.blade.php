@@ -11,7 +11,7 @@
                 <svg class="fill-current w-3 h-3 mx-3" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><path d="M285.476 272.971L91.132 467.314c-9.373 9.373-24.569 9.373-33.941 0l-22.667-22.667c-9.357-9.357-9.375-24.522-.04-33.901L188.505 256 34.484 101.255c-9.335-9.379-9.317-24.544.04-33.901l22.667-22.667c9.373-9.373 24.569-9.373 33.941 0L285.475 239.03c9.373 9.372 9.373 24.568.001 33.941z"/></svg>
               </li>
               <li>
-                <a href="#" class="text-gray-500" aria-current="page">Editar {{$medicamento->nombre}} ({{$medicamento->dosis}} mg.)</a>
+                <a href="#" class="text-gray-500" aria-current="page">Editar {{$medicamento->nombre}}</a>
               </li>
             </ol>
           </nav>
@@ -36,11 +36,25 @@
                                 <x-input id="nombre" class="block mt-1 w-full" type="text" name="nombre" :value="$medicamento->nombre" required autofocus />
                             </div>
 
-                                <div>
-                                    <x-label for="dosis" :value="__('Dosis (mg.)')" />
+                            <!-- Dosis -->
+                            <div class="mt-4">
+                                <x-label for="dosis" :value="__('Dosis (mg.)')" />
 
-                                    <x-input id="dosis" class="block mt-1 w-full" type="number" step="50" name="dosis" :value="$medicamento->dosis" required />
-                                </div>
+                                <x-input id="dosis" class="block mt-1 w-full" type="number" name="dosis" :value="$medicamento->dosis" required />
+                            </div>
+
+                            <!-- Tipo medicamento -->
+                            <div class="mt-4">
+                                <x-label for="tipo_medicamento_id" :value="__('Tipo medicamento')" />
+
+
+                                <x-select id="tipo_medicamento_id" name="tipo_medicamento_id" required>
+                                    <option value="">{{__('Elige una opción')}}</option>
+                                    @foreach ($tipo_medicamentos as $tipo_medicamento)
+                                    <option value="{{$tipo_medicamento->id}}" @if ($medicamento->tipo_medicamento_id == $tipo_medicamento->id) selected @endif>{{$tipo_medicamento->nombre}}</option>
+                                    @endforeach
+                                </x-select>
+                            </div>
 
                             <div class="flex items-center justify-end mt-4">
                                 <x-button type="button" class="bg-red-800 hover:bg-red-700">

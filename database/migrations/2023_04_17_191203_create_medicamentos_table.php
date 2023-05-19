@@ -18,7 +18,7 @@ return new class extends Migration
             $table->timestamps();
             $table->string('nombre');
             $table->string('dosis');
-           // $table->foreignId('tipo_medicamentos_id')->constrained()->onDelete('cascade');
+            $table->foreignId('tipo_medicamento_id')->constrained()->onDelete('cascade');
         });
     }
 
