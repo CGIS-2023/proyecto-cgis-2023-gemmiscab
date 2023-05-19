@@ -9,7 +9,11 @@ class Receta extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['fecha'];
+    protected $fillable = ['fecha', 'farmaceutico_id', 'paciente_id'];
+
+    protected $casts = [
+        'fecha' => 'date: Y-m-d',
+    ];
 
     public function farmaceutico(){
         return $this->belongsTo(Farmaceutico::class);

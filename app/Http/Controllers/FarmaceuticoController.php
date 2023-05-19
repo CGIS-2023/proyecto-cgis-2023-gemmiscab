@@ -63,9 +63,8 @@ class FarmaceuticoController extends Controller
      * @param  \App\Equipo  $equipo
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Farmaceutico $farmaceutico)
     {
-        $farmaceutico = Farmaceutico::find($id);
         return view('farmaceuticos.show', ['farmaceutico' => $farmaceutico]);
     }
 
@@ -109,16 +108,14 @@ class FarmaceuticoController extends Controller
      * @param  \App\Equipo  $equipo
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Farmaceutico $farmaceutico)
     {
-        // if($farmaceutico->delete()) {
-        //     session()->flash('success', 'Farmacéutico borrado correctamente. Si nos da tiempo haremos este mensaje internacionalizable y parametrizable');
-        // }
-        // else{
-        //     session()->flash('warning', 'El farmacéutico no pudo borrarse. Es probable que se deba a que tenga asociada información como citas que dependen de él.');
-        // }
-        $farmaceutico = Farmaceutico::find($id);
-        $farmaceutico->delete();
+        if($farmaceutico->delete()) {
+            session()->flash('success', 'Farmacéutico borrado correctamente. Si nos da tiempo haremos este mensaje internacionalizable y parametrizable');
+        }
+        else{
+            session()->flash('warning', 'El farmacéutico no pudo borrarse. Es probable que se deba a que tenga asociada información como citas que dependen de él.');
+        }
         return redirect()->route('farmaceuticos.index');
     }
 }

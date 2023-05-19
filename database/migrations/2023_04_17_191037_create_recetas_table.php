@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('recetas', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
-            $table->dateTime('fecha');
+            $table->date('fecha');
             $table->foreignId('farmaceutico_id')->constrained()->onDelete('cascade');
             $table->foreignId('paciente_id')->constrained()->onDelete('cascade');
         });

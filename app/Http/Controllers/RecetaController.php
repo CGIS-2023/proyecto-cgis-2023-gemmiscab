@@ -2,9 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Medicamento;
+use App\Models\Farmaceutico;
+use App\Models\Paciente;
 use App\Models\Receta;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Validation\Rule;
+
 
 class RecetaController extends Controller
 {
@@ -59,7 +64,7 @@ class RecetaController extends Controller
         return redirect()->route('recetas.index');
     }
 
-    public function show($id)
+    public function show(Receta $receta)
     {
         return view('recetas.show', ['receta' => $receta]);
     }
@@ -111,27 +116,27 @@ class RecetaController extends Controller
         return redirect()->route('recetas.index');
     }
 
-    // public function attach_medicamento(Request $request, Receta $receta)
-    // {
-    //     $this->validateWithBag('attach',$request, [
-    //         'medicamento_id' => 'required|exists:farmaceuticos,id',
-    //         'inicio' => 'required|date',
-    //         'fin' => 'required|date|after:inicio',
-    //         'comentarios' => 'nullable|string',
-    //         'tomas_dia' => 'required|numeric|min:0',
-    //     ]);
-    //     $cita->medicamentos()->attach($request->medicamento_id, [
-    //         'inicio' => $request->inicio,
-    //         'fin' => $request->fin,
-    //         'comentarios' => $request->comentarios,
-    //         'tomas_dia' => $request->tomas_dia
-    //     ]);
-    //     return redirect()->route('recetas.edit', $receta->id);
-    // }
+    public function attach_medicamento(Request $request, Receta $receta)
+    {
+        $this->validateWithBag('attach',$request, [
+            'medicamento_id' => 'required|exists:farmaceuticos,id',
+            'inicio' => 'required|date',
+            'fin' => 'required|date|after:inicio',
+            'comentarios' => 'nullable|string',
+            'tomas_dia' => 'required|numeric|min:0',
+        ]);
+        $cita->medicamentos()->attach($request->medicamento_id, [
+            'inicio' => $request->inicio,
+            'fin' => $request->fin,
+            'comentarios' => $request->comentarios,
+            'tomas_dia' => $request->tomas_dia
+        ]);
+        return redirect()->route('recetas.edit', $receta->id);
+    }
 
-    // public function detach_medicamento(Receta $receta, Medicamento $medicamento)
-    // {
-    //     $receta->medicamentos()->detach($medicamento->id);
-    //     return redirect()->route('recetas.edit', $receta->id);
-    // }
+    public function detach_medicamento(Receta $receta, Medicamento $medicamento)
+    {
+        $receta->medicamentos()->detach($medicamento->id);
+        return redirect()->route('recetas.edit', $receta->id);
+    }
 }
