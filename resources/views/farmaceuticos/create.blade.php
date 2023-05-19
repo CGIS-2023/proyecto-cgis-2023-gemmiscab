@@ -34,10 +34,10 @@
                                 <x-input id="name" class="block mt-1 w-full" type="text" name="name" :value="old('name')" required autofocus />
                             </div>
 
-                            <div>
+                            <div class="mt-4">
                                 <x-label for="numero_colegiado" :value="__('Número Colegiado')" />
 
-                                <x-input id="numero_colegiado" class="block mt-1 w-full" type="text" name="Número Colegiado" :value="old('Número Colegiado')" required autofocus />
+                                <x-input id="numero_colegiado" class="block mt-1 w-full" type="text" name="numero colegiado" :value="old('numero colegiado')" required autofocus />
                             </div>
 
                             <!-- Email Address -->

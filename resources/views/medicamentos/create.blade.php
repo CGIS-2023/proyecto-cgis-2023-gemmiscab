@@ -47,7 +47,7 @@
                                 <x-label for="tipo_medicamento" :value="__('Tipo medicamento')" />
 
 
-                                <x-select id="tipo_medicamento_id" name="tipo_medicamento" required>
+                                <x-select id="tipo_medicamento_id" name="tipo medicamento id" required>
                                     <option value="">{{__('Elige una opción')}}</option>
                                     @foreach ($tipo_medicamentos as $tipo_medicamento)
                                     <option value="{{$tipo_medicamento->id}}" @if (old('tipo_medicamento_id') == $tipo_medicamento->id) selected @endif>{{$tipo_medicamento->nombre}}</option>

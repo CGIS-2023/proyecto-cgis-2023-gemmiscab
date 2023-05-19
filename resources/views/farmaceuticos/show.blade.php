@@ -33,10 +33,10 @@
                                 <x-input id="name" readonly disabled class="block mt-1 w-full" type="text" name="name" :value="$farmaceutico->user->name" required autofocus />
                             </div>
 
-                            <div>
+                            <div class="mt-4">
                                 <x-label for="numero_colegiado" :value="__('Número Colegiado')" />
 
-                                <x-input id="numero_colegiado" readonly disabled class="block mt-1 w-full" type="text" name="Número Colegiado" :value="$farmaceutico->numero_colegiado" required autofocus />
+                                <x-input id="numero_colegiado" readonly disabled class="block mt-1 w-full" type="text" name="numero colegiado" :value="$farmaceutico->numero_colegiado" required autofocus />
                             </div>
 
                             <!-- Email Address -->

@@ -3,7 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\Farmaceutico;
+use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
+
 
 class FarmaceuticoController extends Controller
 {
@@ -42,13 +45,13 @@ class FarmaceuticoController extends Controller
             'password' => 'required|string|confirmed|min:8',
             'numero_colegiado' => 'required|string',
         ]);
-        // $user = User::create([
-        //     'name' => $request->name,
-        //     'email' => $request->email,
-        //     'password' => Hash::make($request->password),
-        // ]);
+        $user = User::create([
+            'name' => $request->name,
+            'email' => $request->email,
+            'password' => Hash::make($request->password),
+        ]);
         $farmaceutico = new Farmaceutico($request->all());
-        //$farmaceutico->user_id = $user->id;
+        $farmaceutico->user_id = $user->id;
         $farmaceutico->save();
         session()->flash('success', 'Farmacéutico creado correctamente. Si nos da tiempo haremos este mensaje internacionalizable y parametrizable');
         return redirect()->route('farmaceuticos.index');
@@ -84,16 +87,16 @@ class FarmaceuticoController extends Controller
      * @param  \App\Equipo  $equipo
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Farmaceutico $farmaceutico)
     {
         $this->validate($request, [
             'name' => 'required|string|max:255',
             'email' => 'required|string|email|max:255',
             'numero_colegiado' => 'required|string',
         ]);
-        // $user = $farmaceutico->user;
-        // $user->fill($request->all());
-        // $user->save();
+        $user = $farmaceutico->user;
+        $user->fill($request->all());
+        $user->save();
         $farmaceutico->fill($request->all());
         $farmaceutico->save();
         session()->flash('success', 'Farmacéutico modificado correctamente. Si nos da tiempo haremos este mensaje internacionalizable y parametrizable');
