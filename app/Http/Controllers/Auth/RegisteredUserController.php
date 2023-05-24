@@ -3,8 +3,12 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Models\Farmaceutico;
+use App\Models\Paciente;
 use App\Models\User;
 use App\Providers\RouteServiceProvider;
+use App\Rules\Nuhsa;
+use App\Rules\NumeroColegiado;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -23,6 +27,12 @@ class RegisteredUserController extends Controller
         return view('auth.register');
     }
 
+    public function create_farmaceutico()
+    {
+        return view('auth.register-farmaceutico');
+    }
+
+
     /**
      * Handle an incoming registration request.
      *
@@ -30,7 +40,7 @@ class RegisteredUserController extends Controller
      */
     public function store(Request $request): RedirectResponse
     {
-        $request->validate([
+        $rules = ([
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:'.User::class],
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
@@ -40,7 +50,7 @@ class RegisteredUserController extends Controller
         $tipo_usuario_id = intval($request->tipo_usuario_id);
         if($tipo_usuario_id == 1){
             //Farmacéutico
-            $reglas_farmaceutico = ['numero_colegiado' => 'required|string'];
+            $reglas_farmaceutico = ['numero_colegiado' => ['required', 'string', 'max:12', 'min:12']];
             $rules = array_merge($reglas_farmaceutico, $rules);
         }
         elseif($tipo_usuario_id == 2){
@@ -70,9 +80,9 @@ class RegisteredUserController extends Controller
         }
         $user->fresh();
 
-        event(new Registered($user));
-
         Auth::login($user);
+
+        event(new Registered($user));
 
         return redirect(RouteServiceProvider::HOME);
     }

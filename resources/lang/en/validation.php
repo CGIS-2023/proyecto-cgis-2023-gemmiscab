@@ -141,10 +141,11 @@ return [
     */
 
     'custom' => [
-        'attribute-name' => [
-            'rule-name' => 'custom-message',
+        'nuhsa' => [
+            'nuhsa' => 'El formato de :attribute no cumple con el formato NUHSA',
         ],
     ],
+
 
     /*
     |--------------------------------------------------------------------------
